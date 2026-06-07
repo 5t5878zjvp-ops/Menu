@@ -23,7 +23,7 @@
       scroll-behavior: smooth;
     }
 
-    /* STATIC BACKGROUND - no floating balls */
+    /* STATIC BACKGROUND */
     .stadium-bg {
       position: fixed;
       top: 0;
@@ -46,7 +46,6 @@
       pointer-events: none;
     }
 
-    /* container */
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -305,6 +304,32 @@
       border-radius: 10px;
     }
 
+    /* full-width sections */
+    .full-width-section {
+      margin: 3rem 0;
+    }
+
+    .section-title {
+      font-size: 2.3rem;
+      font-weight: 800;
+      text-align: center;
+      margin: 2rem 0 1.8rem;
+    }
+
+    .section-title span {
+      background: linear-gradient(135deg, #ffffff, #e0e0e0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      border-bottom: 3px solid #ffffff;
+      padding-bottom: 8px;
+    }
+
+    .single-card-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+
     /* footer */
     .footer {
       background: rgba(0,0,0,0.75);
@@ -366,6 +391,7 @@
       box-shadow: 0 4px 14px rgba(0,0,0,0.4);
       z-index: 99;
       transition: 0.2s;
+      text-decoration: none;
     }
 
     .whatsapp-float:hover {
@@ -405,6 +431,7 @@
       .btn-prev { left: -5px; }
       .btn-next { right: -5px; }
       .menu-card { padding: 1.3rem; }
+      .section-title { font-size: 1.9rem; }
     }
   </style>
 </head>
@@ -417,6 +444,8 @@
 <div class="navbar">
   <a class="nav-link" data-section="home">🏠 HOME</a>
   <a class="nav-link" data-section="menu-carousel">🍽️ MENU</a>
+  <a class="nav-link" data-section="beverages-section">🍻 BEVERAGES</a>
+  <a class="nav-link" data-section="shisha-section">💨 SHISHA</a>
   <a class="nav-link" data-section="contact-footer">📞 CONTACT</a>
 </div>
 
@@ -432,7 +461,7 @@
   </section>
 
   <div class="container" id="menu-carousel">
-    <!-- Carousel Menu Section -->
+    <!-- CAROUSEL: Appetizers, Sandwiches, Salads only -->
     <div class="carousel-section">
       <div class="carousel-container">
         <div class="carousel-btn btn-prev" id="prevBtn">‹</div>
@@ -450,7 +479,7 @@
                 <div class="menu-item"><span class="item-name">Mn Kel Shi (8 pcs)</span><span class="item-price">$10</span></div>
               </div>
             </div>
-            <!-- Sandwiches Slide (removed pickles phrase) -->
+            <!-- Sandwiches Slide -->
             <div class="carousel-slide">
               <div class="menu-card">
                 <div class="card-title">🥙 Sandwiches</div>
@@ -474,35 +503,49 @@
                 <div class="menu-item"><span class="item-name">Chicken Caesar Salad</span><span class="item-price">$12 / $6</span></div>
               </div>
             </div>
-            <!-- Beverages Slide (reordered) -->
-            <div class="carousel-slide">
-              <div class="menu-card">
-                <div class="card-title">🍻 Beverages</div>
-                <div class="menu-item"><span class="item-name">Water (small)</span><span class="item-price">$1</span></div>
-                <div class="menu-item"><span class="item-name">Water (big)</span><span class="item-price">$2</span></div>
-                <div class="menu-item"><span class="item-name">Soft Drink</span><span class="item-price">$1.5</span></div>
-                <div class="menu-item"><span class="item-name">Ice Tea</span><span class="item-price">$1.5</span></div>
-                <div class="menu-item"><span class="item-name">Beer</span><span class="item-price">$4</span></div>
-                <div class="menu-item"><span class="item-name">Mexican Beer</span><span class="item-price">$5</span></div>
-              </div>
-            </div>
-            <!-- Shisha Slide (updated: apple emoji + Ras Tene) -->
-            <div class="carousel-slide">
-              <div class="menu-card shisha-smoke">
-                <div class="card-title">🍃 Shisha</div>
-                <div class="menu-item"><span class="item-name">🌿 Hamoud w Na3na3 (Mint & Lemon)</span><span class="item-price">$7</span></div>
-                <div class="menu-item"><span class="item-name">🍎 2 Apples (Double Apple)</span><span class="item-price">$7</span></div>
-                <div class="badge-combo" style="margin-top:1rem;"><strong>Ras Tene for $2</strong></div>
-              </div>
-            </div>
           </div>
         </div>
         <div class="carousel-btn btn-next" id="nextBtn">›</div>
       </div>
       <div class="dots" id="dotsContainer"></div>
     </div>
+  </div>
 
-    <!-- World Cup Offer Box (standalone, below carousel) -->
+  <!-- BEVERAGES SECTION (full width, separate) -->
+  <div id="beverages-section" class="full-width-section">
+    <div class="container">
+      <div class="section-title"><span>BEVERAGES</span></div>
+      <div class="single-card-wrapper">
+        <div class="menu-card">
+          <div class="card-title">🍻 Beverages</div>
+          <div class="menu-item"><span class="item-name">Water (small)</span><span class="item-price">$1</span></div>
+          <div class="menu-item"><span class="item-name">Water (big)</span><span class="item-price">$2</span></div>
+          <div class="menu-item"><span class="item-name">Soft Drink</span><span class="item-price">$1.5</span></div>
+          <div class="menu-item"><span class="item-name">Ice Tea</span><span class="item-price">$1.5</span></div>
+          <div class="menu-item"><span class="item-name">Beer</span><span class="item-price">$4</span></div>
+          <div class="menu-item"><span class="item-name">Mexican Beer</span><span class="item-price">$5</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHISHA SECTION (full width, separate) -->
+  <div id="shisha-section" class="full-width-section">
+    <div class="container">
+      <div class="section-title"><span>SHISHA</span></div>
+      <div class="single-card-wrapper">
+        <div class="menu-card shisha-smoke">
+          <div class="card-title">🍃 Shisha</div>
+          <div class="menu-item"><span class="item-name">🌿 Hamoud w Na3na3</span><span class="item-price">$7</span></div>
+          <div class="menu-item"><span class="item-name">🍎 2 Apples</span><span class="item-price">$7</span></div>
+          <div class="badge-combo" style="margin-top:1rem;"><strong>Ras Tene $2</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- World Cup Offer Box (standalone) -->
+  <div class="container">
     <div style="display: flex; justify-content: center; margin: 2rem auto 1rem;">
       <div class="menu-card" style="max-width: 500px; text-align: center; background: rgba(20,40,22,0.85);">
         <strong style="font-size: 1.5rem; color: white; display: block; margin-bottom: 8px;">World Cup Offer</strong>
@@ -522,8 +565,8 @@
   </footer>
 </main>
 
-<!-- floating WhatsApp button -->
-<a href="https://wa.me/96170181471?text=Hi%20Hoyek's!%20I%20want%20to%20order%20from%20World%20Cup%20Menu" class="whatsapp-float" target="_blank">
+<!-- floating WhatsApp button with pre-filled order message -->
+<a href="https://wa.me/96170181471?text=Bade%20Otloub%3A%0A%0AOrder%3A%0A---%0A%0ALocation%3A%0A---" class="whatsapp-float" target="_blank" id="whatsappBtn">
   <i class="fab fa-whatsapp"></i>
 </a>
 
@@ -531,7 +574,7 @@
 
 <script>
   (function() {
-    // Carousel logic
+    // Carousel logic (Appetizers, Sandwiches, Salads only)
     const slidesContainer = document.getElementById('carouselSlides');
     const slides = Array.from(document.querySelectorAll('.carousel-slide'));
     const prevBtn = document.getElementById('prevBtn');
@@ -543,7 +586,6 @@
     function updateCarousel() {
       const offset = -currentIndex * 100;
       slidesContainer.style.transform = `translateX(${offset}%)`;
-      // update dots
       const dots = document.querySelectorAll('.dot');
       dots.forEach((dot, idx) => {
         if (idx === currentIndex) dot.classList.add('active');
@@ -579,20 +621,22 @@
     prevBtn.addEventListener('click', prevSlide);
     createDots();
 
-    // Optional: touch/swipe support for mobile
+    // Touch/swipe support for mobile
     let touchStartX = 0;
     let touchEndX = 0;
     const carouselWrapper = document.querySelector('.carousel-wrapper');
-    carouselWrapper.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-    carouselWrapper.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      if (touchEndX < touchStartX - 50) nextSlide();
-      if (touchEndX > touchStartX + 50) prevSlide();
-    });
+    if (carouselWrapper) {
+      carouselWrapper.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+      carouselWrapper.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX < touchStartX - 50) nextSlide();
+        if (touchEndX > touchStartX + 50) prevSlide();
+      });
+    }
 
-    // Navigation: scroll to carousel section when "Menu" clicked
+    // Navigation: scroll to various sections
     function scrollToSection(sectionId) {
       const target = document.getElementById(sectionId);
       if (target) {
@@ -619,7 +663,7 @@
       });
     }
 
-    // scroll to top button
+    // Scroll to top button
     const scrollBtn = document.getElementById('scrollTopBtn');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 500) scrollBtn.classList.add('show');
@@ -629,7 +673,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // subtle smoke animation on shisha card (only for that slide, but works)
+    // Subtle smoke animation on Shisha card
     function addSmokeEffect() {
       const shishaCard = document.querySelector('.shisha-smoke');
       if (shishaCard) {
@@ -650,6 +694,17 @@
       }
     }
     addSmokeEffect();
+
+    // WhatsApp button already has pre-filled message in href
+    // Ensure it opens correctly on all devices
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    if (whatsappBtn) {
+      // The message is correctly encoded:
+      // "Bade Otloub:\n\nOrder:\n---\n\nLocation:\n---"
+      whatsappBtn.addEventListener('click', (e) => {
+        // No extra action needed, the link already works
+      });
+    }
   })();
 </script>
 </body>
