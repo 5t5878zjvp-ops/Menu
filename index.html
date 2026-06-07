@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* style.css - MODIFIED: all yellow/gold replaced with white */
     * {
       margin: 0;
       padding: 0;
@@ -24,7 +23,7 @@
       scroll-behavior: smooth;
     }
 
-    /* STATIC BACKGROUND */
+    /* STATIC BACKGROUND - no floating balls */
     .stadium-bg {
       position: fixed;
       top: 0;
@@ -47,21 +46,6 @@
       pointer-events: none;
     }
 
-    /* floating footballs */
-    .floating-ball {
-      position: fixed;
-      z-index: 0;
-      opacity: 0.13;
-      pointer-events: none;
-      animation: floatBall 20s infinite linear;
-    }
-
-    @keyframes floatBall {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0.05; }
-      50% { opacity: 0.2; }
-      100% { transform: translateY(-20vh) rotate(360deg); opacity: 0.05; }
-    }
-
     /* container */
     .container {
       max-width: 1200px;
@@ -71,7 +55,7 @@
       z-index: 2;
     }
 
-    /* sticky navbar - white borders/text */
+    /* sticky navbar */
     .navbar {
       position: sticky;
       top: 0;
@@ -133,13 +117,13 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin: 0.5rem 0 0.2rem 0;  /* reduced bottom margin to tighten gap */
+      margin: 0.5rem 0 0.2rem 0;
       text-shadow: 0 2px 15px rgba(0,0,0,0.5);
     }
 
     .hero-tagline {
       font-size: 1.2rem;
-      margin: 0.5rem 0 1rem 0;  /* reduced vertical space */
+      margin: 0.5rem 0 1rem 0;
       opacity: 0.9;
       color: #f0f0f0;
     }
@@ -166,63 +150,33 @@
       border-color: #ffffff;
     }
 
-    /* section titles - white only */
-    .section-title {
-      font-size: 2.3rem;
-      font-weight: 800;
-      text-align: center;
-      margin: 2.5rem 0 1.8rem;
+    /* carousel styles */
+    .carousel-section {
+      margin: 2rem 0 3rem;
+    }
+
+    .carousel-container {
       position: relative;
-    }
-
-    .section-title span {
-      background: linear-gradient(135deg, #ffffff, #e0e0e0);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      border-bottom: 3px solid #ffffff;
-      padding-bottom: 8px;
-    }
-
-    /* quick category pills - white border */
-    .quick-cats {
       display: flex;
+      align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin: 1.5rem 0 2rem;
     }
 
-    .cat-pill {
-      background: rgba(30, 50, 28, 0.8);
-      backdrop-filter: blur(8px);
-      padding: 0.6rem 1.6rem;
-      border-radius: 60px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      cursor: pointer;
-      transition: 0.2s;
-      color: #ffffff;
+    .carousel-wrapper {
+      overflow: hidden;
+      width: 100%;
+      border-radius: 32px;
     }
 
-    .cat-pill:hover {
-      background: #ffffff;
-      color: #0a1f0e;
-      transform: translateY(-2px);
-      border-color: #ffffff;
-    }
-
-    /* menu sections - each isolated */
-    .menu-section-block {
-      margin-bottom: 3.5rem;
-      scroll-margin-top: 85px;
-    }
-
-    /* single card per section (full width but limited) */
-    .single-card-wrapper {
+    .carousel-slides {
       display: flex;
-      justify-content: center;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      flex-shrink: 0;
+      padding: 0.5rem;
     }
 
     .menu-card {
@@ -234,8 +188,6 @@
       transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       box-shadow: 0 20px 30px -12px rgba(0,0,0,0.5);
       width: 100%;
-      max-width: 700px;
-      margin: 0 auto;
     }
 
     .menu-card:hover {
@@ -294,13 +246,66 @@
       color: #ffffff;
     }
 
-    /* shisha card and smoke effect */
     .shisha-smoke {
       position: relative;
       overflow: hidden;
     }
 
-    /* footer - white elements */
+    /* carousel navigation */
+    .carousel-btn {
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      font-size: 1.8rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      transition: 0.2s;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .btn-prev {
+      left: -15px;
+    }
+
+    .btn-next {
+      right: -15px;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .dot.active {
+      background: #ffffff;
+      width: 24px;
+      border-radius: 10px;
+    }
+
+    /* footer */
     .footer {
       background: rgba(0,0,0,0.75);
       backdrop-filter: blur(10px);
@@ -392,46 +397,27 @@
       visibility: visible;
     }
 
-    /* fade scroll */
-    .fade-scroll {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .fade-scroll.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     @media (max-width: 680px) {
       .hero-content h1 { font-size: 2.7rem; }
       .hero-content h2 { font-size: 1.2rem; }
-      .section-title { font-size: 1.9rem; }
       .navbar { gap: 1rem; padding: 0.7rem 1rem; }
-      .cat-pill { padding: 0.4rem 1rem; font-size: 0.8rem; }
+      .carousel-btn { width: 36px; height: 36px; font-size: 1.2rem; }
+      .btn-prev { left: -5px; }
+      .btn-next { right: -5px; }
       .menu-card { padding: 1.3rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- STATIC BACKGROUND (no movement) -->
 <img class="stadium-bg" src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?q=80&w=2070&auto=format" alt="stadium background">
 <div class="lighting-overlay"></div>
-
-<!-- floating footballs decoration -->
-<div id="floatingBallsContainer"></div>
 
 <!-- Sticky Navigation -->
 <div class="navbar">
   <a class="nav-link" data-section="home">🏠 HOME</a>
-  <a class="nav-link" data-section="appetizers">APPETIZERS</a>
-  <a class="nav-link" data-section="sandwiches">SANDWICHES</a>
-  <a class="nav-link" data-section="salads">SALADS</a>
-  <a class="nav-link" data-section="beverages">BEVERAGES</a>
-  <a class="nav-link" data-section="shisha">SHISHA</a>
-  <a class="nav-link" data-section="contact-footer">CONTACT</a>
+  <a class="nav-link" data-section="menu-carousel">🍽️ MENU</a>
+  <a class="nav-link" data-section="contact-footer">📞 CONTACT</a>
 </div>
 
 <main>
@@ -445,99 +431,82 @@
     </div>
   </section>
 
-  <div class="container" id="menu-start">
-    <!-- quick category pills -->
-    <div class="quick-cats">
-      <div class="cat-pill" data-section="appetizers">🍢 Appetizers</div>
-      <div class="cat-pill" data-section="sandwiches">🥙 Sandwiches</div>
-      <div class="cat-pill" data-section="salads">🥗 Salads</div>
-      <div class="cat-pill" data-section="beverages">🍻 Beverages</div>
-      <div class="cat-pill" data-section="shisha">💨 Shisha</div>
+  <div class="container" id="menu-carousel">
+    <!-- Carousel Menu Section -->
+    <div class="carousel-section">
+      <div class="carousel-container">
+        <div class="carousel-btn btn-prev" id="prevBtn">‹</div>
+        <div class="carousel-wrapper">
+          <div class="carousel-slides" id="carouselSlides">
+            <!-- Appetizers Slide -->
+            <div class="carousel-slide">
+              <div class="menu-card">
+                <div class="card-title">🔥 Appetizers</div>
+                <div class="card-sub">12 pcs • golden & crispy</div>
+                <div class="menu-item"><span class="item-name">Rkakat</span><span class="item-price">$6</span></div>
+                <div class="menu-item"><span class="item-name">Sambousik Jebne</span><span class="item-price">$6</span></div>
+                <div class="menu-item"><span class="item-name">Sambousik Lahme</span><span class="item-price">$6</span></div>
+                <div class="menu-item"><span class="item-name">Kebbeh</span><span class="item-price">$8</span></div>
+                <div class="menu-item"><span class="item-name">Mn Kel Shi (8 pcs)</span><span class="item-price">$10</span></div>
+              </div>
+            </div>
+            <!-- Sandwiches Slide (removed pickles phrase) -->
+            <div class="carousel-slide">
+              <div class="menu-card">
+                <div class="card-title">🥙 Sandwiches</div>
+                <div class="menu-item"><span class="item-name">Tawouk</span><span class="item-price">$6</span></div>
+                <div class="menu-item"><span class="item-name">Fajitas</span><span class="item-price">$7</span></div>
+                <div class="menu-item"><span class="item-name">Crispy Chicken</span><span class="item-price">$7</span></div>
+                <div class="menu-item"><span class="item-name">Hamburger</span><span class="item-price">$8</span></div>
+                <div class="menu-item"><span class="item-name">Chicken Burger</span><span class="item-price">$8</span></div>
+                <div class="menu-item"><span class="item-name">Rosto</span><span class="item-price">$8</span></div>
+                <div class="menu-item"><span class="item-name">Make It Platter</span><span class="item-price">$10</span></div>
+                <div class="badge-combo">🧀 Add cheese + $1 &nbsp;|&nbsp; 🍟 Add combo + $3</div>
+              </div>
+            </div>
+            <!-- Salads Slide -->
+            <div class="carousel-slide">
+              <div class="menu-card">
+                <div class="card-title">🥗 Salads</div>
+                <div class="card-sub">4 persons / 2 persons</div>
+                <div class="menu-item"><span class="item-name">Fatouch</span><span class="item-price">$9 / $5</span></div>
+                <div class="menu-item"><span class="item-name">Crab Salad</span><span class="item-price">$12 / $6</span></div>
+                <div class="menu-item"><span class="item-name">Chicken Caesar Salad</span><span class="item-price">$12 / $6</span></div>
+              </div>
+            </div>
+            <!-- Beverages Slide (reordered) -->
+            <div class="carousel-slide">
+              <div class="menu-card">
+                <div class="card-title">🍻 Beverages</div>
+                <div class="menu-item"><span class="item-name">Water (small)</span><span class="item-price">$1</span></div>
+                <div class="menu-item"><span class="item-name">Water (big)</span><span class="item-price">$2</span></div>
+                <div class="menu-item"><span class="item-name">Soft Drink</span><span class="item-price">$1.5</span></div>
+                <div class="menu-item"><span class="item-name">Ice Tea</span><span class="item-price">$1.5</span></div>
+                <div class="menu-item"><span class="item-name">Beer</span><span class="item-price">$4</span></div>
+                <div class="menu-item"><span class="item-name">Mexican Beer</span><span class="item-price">$5</span></div>
+              </div>
+            </div>
+            <!-- Shisha Slide (updated: apple emoji + Ras Tene) -->
+            <div class="carousel-slide">
+              <div class="menu-card shisha-smoke">
+                <div class="card-title">🍃 Shisha</div>
+                <div class="menu-item"><span class="item-name">🌿 Hamoud w Na3na3 (Mint & Lemon)</span><span class="item-price">$7</span></div>
+                <div class="menu-item"><span class="item-name">🍎 2 Apples (Double Apple)</span><span class="item-price">$7</span></div>
+                <div class="badge-combo" style="margin-top:1rem;"><strong>Ras Tene for $2</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-btn btn-next" id="nextBtn">›</div>
+      </div>
+      <div class="dots" id="dotsContainer"></div>
     </div>
 
-    <!-- 1. APPETIZERS SECTION (alone) -->
-    <div id="appetizers" class="menu-section-block fade-scroll">
-      <div class="section-title"><span>APPETIZERS</span></div>
-      <div class="single-card-wrapper">
-        <div class="menu-card">
-          <div class="card-title">🔥 Hot Mezza</div>
-          <div class="card-sub">12 pcs • golden & crispy</div>
-          <div class="menu-item"><span class="item-name">Rkakat</span><span class="item-price">$6</span></div>
-          <div class="menu-item"><span class="item-name">Sambousik Jebne</span><span class="item-price">$6</span></div>
-          <div class="menu-item"><span class="item-name">Sambousik Lahme</span><span class="item-price">$6</span></div>
-          <div class="menu-item"><span class="item-name">Kebbeh</span><span class="item-price">$8</span></div>
-          <div class="menu-item"><span class="item-name">Mn Kel Shi (8 pcs)</span><span class="item-price">$10</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. SANDWICHES SECTION (alone) -->
-    <div id="sandwiches" class="menu-section-block fade-scroll">
-      <div class="section-title"><span>SANDWICHES</span></div>
-      <div class="single-card-wrapper">
-        <div class="menu-card">
-          <div class="card-title">Gourmet Wraps & Burgers</div>
-          <div class="card-sub">served with pickles & garlic paste</div>
-          <div class="menu-item"><span class="item-name">Tawouk</span><span class="item-price">$6</span></div>
-          <div class="menu-item"><span class="item-name">Fajitas</span><span class="item-price">$7</span></div>
-          <div class="menu-item"><span class="item-name">Crispy Chicken</span><span class="item-price">$7</span></div>
-          <div class="menu-item"><span class="item-name">Hamburger</span><span class="item-price">$8</span></div>
-          <div class="menu-item"><span class="item-name">Chicken Burger</span><span class="item-price">$8</span></div>
-          <div class="menu-item"><span class="item-name">Rosto</span><span class="item-price">$8</span></div>
-          <div class="menu-item"><span class="item-name">Make It Platter</span><span class="item-price">$10</span></div>
-          <div class="badge-combo">🧀 Add cheese + $1 &nbsp;|&nbsp; 🍟 Add combo + $3</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3. SALADS SECTION (alone) -->
-    <div id="salads" class="menu-section-block fade-scroll">
-      <div class="section-title"><span>SALADS</span></div>
-      <div class="single-card-wrapper">
-        <div class="menu-card">
-          <div class="card-title">Fresh Harvest</div>
-          <div class="card-sub">4 persons / 2 persons</div>
-          <div class="menu-item"><span class="item-name">Fatouch</span><span class="item-price">$9 / $5</span></div>
-          <div class="menu-item"><span class="item-name">Crab Salad</span><span class="item-price">$12 / $6</span></div>
-          <div class="menu-item"><span class="item-name">Chicken Caesar Salad</span><span class="item-price">$12 / $6</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. BEVERAGES SECTION (alone) -->
-    <div id="beverages" class="menu-section-block fade-scroll">
-      <div class="section-title"><span>BEVERAGES</span></div>
-      <div class="single-card-wrapper">
-        <div class="menu-card">
-          <div class="card-title">Refreshing Drinks</div>
-          <div class="card-sub">chill & celebrate</div>
-          <div class="menu-item"><span class="item-name">Beer</span><span class="item-price">$4</span></div>
-          <div class="menu-item"><span class="item-name">Mexican Beer</span><span class="item-price">$5</span></div>
-          <div class="menu-item"><span class="item-name">Soft Drink</span><span class="item-price">$1.5</span></div>
-          <div class="menu-item"><span class="item-name">Ice Tea</span><span class="item-price">$1.5</span></div>
-          <div class="menu-item"><span class="item-name">Water (small)</span><span class="item-price">$1</span></div>
-          <div class="menu-item"><span class="item-name">Water (big)</span><span class="item-price">$2</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. SHISHA SECTION - price $7, changed text, removed 'Premium' -->
-    <div id="shisha" class="menu-section-block fade-scroll">
-      <div class="section-title"><span>SHISHA</span></div>
-      <div class="single-card-wrapper">
-        <div class="menu-card shisha-smoke">
-          <div class="card-title">🍃 Shisha</div>
-          <div class="menu-item"><span class="item-name">🌿 Hamoud w Na3na3 (Mint & Lemon)</span><span class="item-price">$7</span></div>
-          <div class="menu-item"><span class="item-name">2 Apples (Double Apple)</span><span class="item-price">$7</span></div>
-          <div class="badge-combo" style="margin-top:1rem;">🌫️ Smooth hookah • coal included</div>
-        </div>
-      </div>
-      <!-- Second card with new text: World Cup offer -->
-      <div style="display: flex; justify-content: center; margin-top: 1.8rem;">
-        <div class="menu-card" style="max-width: 500px; text-align: center; background: rgba(20,40,22,0.85);">
-          <i class="fas fa-futbol" style="font-size: 2.5rem; color: #ffffff; margin-bottom: 10px;"></i>
-          <p style="font-weight: 600; color: white;">World Cup offer: Shisha + Beer for $9</p>
-        </div>
+    <!-- World Cup Offer Box (standalone, below carousel) -->
+    <div style="display: flex; justify-content: center; margin: 2rem auto 1rem;">
+      <div class="menu-card" style="max-width: 500px; text-align: center; background: rgba(20,40,22,0.85);">
+        <strong style="font-size: 1.5rem; color: white; display: block; margin-bottom: 8px;">World Cup Offer</strong>
+        <p style="font-weight: 500; color: #f5f5f5;">Shisha + Beer for $9</p>
       </div>
     </div>
   </div>
@@ -561,100 +530,126 @@
 <div class="scroll-top" id="scrollTopBtn"><i class="fas fa-chevron-up"></i></div>
 
 <script>
-  // script.js
   (function() {
-    // floating footballs (static decoration)
-    const ballsContainer = document.getElementById('floatingBallsContainer');
-    const ballCount = 14;
-    for(let i=0; i<ballCount; i++) {
-      const ball = document.createElement('div');
-      ball.classList.add('floating-ball');
-      ball.innerHTML = '⚽';
-      ball.style.fontSize = (Math.random() * 40 + 22) + 'px';
-      ball.style.left = Math.random() * 100 + '%';
-      ball.style.animationDuration = (Math.random() * 18 + 12) + 's';
-      ball.style.animationDelay = (Math.random() * 12) + 's';
-      ball.style.opacity = 0.12;
-      ballsContainer.appendChild(ball);
+    // Carousel logic
+    const slidesContainer = document.getElementById('carouselSlides');
+    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsContainer = document.getElementById('dotsContainer');
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    function updateCarousel() {
+      const offset = -currentIndex * 100;
+      slidesContainer.style.transform = `translateX(${offset}%)`;
+      // update dots
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, idx) => {
+        if (idx === currentIndex) dot.classList.add('active');
+        else dot.classList.remove('active');
+      });
     }
-    
-    // helper scroll to section by ID
+
+    function createDots() {
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (i === currentIndex) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          updateCarousel();
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    createDots();
+
+    // Optional: touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    carouselWrapper.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    carouselWrapper.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX < touchStartX - 50) nextSlide();
+      if (touchEndX > touchStartX + 50) prevSlide();
+    });
+
+    // Navigation: scroll to carousel section when "Menu" clicked
     function scrollToSection(sectionId) {
       const target = document.getElementById(sectionId);
-      if(target) {
+      if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else if(sectionId === 'home') {
+      } else if (sectionId === 'home') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if(sectionId === 'contact-footer') {
+      } else if (sectionId === 'contact-footer') {
         document.getElementById('contact-footer')?.scrollIntoView({ behavior: 'smooth' });
       }
     }
-    
-    // navigation links & category pills
-    const allNavItems = document.querySelectorAll('.nav-link, .cat-pill');
-    allNavItems.forEach(el => {
-      el.addEventListener('click', (e) => {
-        const section = el.getAttribute('data-section');
-        if(section) scrollToSection(section);
+
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const section = link.getAttribute('data-section');
+        if (section) scrollToSection(section);
       });
     });
-    
-    // view menu button -> go to appetizers
-    const viewBtn = document.getElementById('viewMenuBtn');
-    if(viewBtn) {
-      viewBtn.addEventListener('click', () => {
-        scrollToSection('appetizers');
+
+    const viewMenuBtn = document.getElementById('viewMenuBtn');
+    if (viewMenuBtn) {
+      viewMenuBtn.addEventListener('click', () => {
+        scrollToSection('menu-carousel');
       });
     }
-    
-    // scroll to top button logic
+
+    // scroll to top button
     const scrollBtn = document.getElementById('scrollTopBtn');
     window.addEventListener('scroll', () => {
-      if(window.scrollY > 500) scrollBtn.classList.add('show');
+      if (window.scrollY > 500) scrollBtn.classList.add('show');
       else scrollBtn.classList.remove('show');
-      
-      // fade-scroll trigger
-      const fadeElements = document.querySelectorAll('.fade-scroll');
-      fadeElements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        if(rect.top < windowHeight - 70) {
-          el.classList.add('visible');
-        }
-      });
     });
-    
     scrollBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    
-    // initial fade check
-    const fadeEls = document.querySelectorAll('.fade-scroll');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.2 });
-    fadeEls.forEach(el => observer.observe(el));
-    
-    // subtle smoke animation on shisha card (decorative)
-    const shishaCard = document.querySelector('.shisha-smoke');
-    if(shishaCard) {
-      setInterval(() => {
-        const smokePuff = document.createElement('div');
-        smokePuff.innerHTML = '💨';
-        smokePuff.style.position = 'absolute';
-        smokePuff.style.bottom = '15px';
-        smokePuff.style.right = '20px';
-        smokePuff.style.fontSize = '28px';
-        smokePuff.style.opacity = '0.2';
-        smokePuff.style.pointerEvents = 'none';
-        smokePuff.style.transition = 'all 1.8s ease';
-        shishaCard.style.position = 'relative';
-        shishaCard.appendChild(smokePuff);
-        setTimeout(() => { smokePuff.remove(); }, 2000);
-      }, 4200);
+
+    // subtle smoke animation on shisha card (only for that slide, but works)
+    function addSmokeEffect() {
+      const shishaCard = document.querySelector('.shisha-smoke');
+      if (shishaCard) {
+        setInterval(() => {
+          const smokePuff = document.createElement('div');
+          smokePuff.innerHTML = '💨';
+          smokePuff.style.position = 'absolute';
+          smokePuff.style.bottom = '15px';
+          smokePuff.style.right = '20px';
+          smokePuff.style.fontSize = '28px';
+          smokePuff.style.opacity = '0.2';
+          smokePuff.style.pointerEvents = 'none';
+          smokePuff.style.transition = 'all 1.8s ease';
+          shishaCard.style.position = 'relative';
+          shishaCard.appendChild(smokePuff);
+          setTimeout(() => { smokePuff.remove(); }, 2000);
+        }, 4200);
+      }
     }
+    addSmokeEffect();
   })();
 </script>
 </body>
