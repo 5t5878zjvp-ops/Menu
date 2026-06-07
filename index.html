@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>Modern Menu | Urban Bites</title>
+  <!-- Google Fonts + simple reset -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fef9f0;  /* warm creamy background */
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #1e1e2a;
+      line-height: 1.4;
+      padding: 0 0 2rem 0;
+    }
+
+    /* custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0e7db;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d4af7a;
+      border-radius: 10px;
+    }
+
+    /* header & hero */
+    .hero {
+      background: linear-gradient(135deg, #2c2b28 0%, #1f1e1b 100%);
+      padding: 2rem 1.5rem 1.8rem;
+      text-align: center;
+      border-bottom-left-radius: 28px;
+      border-bottom-right-radius: 28px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      letter-spacing: -0.5px;
+      color: #ffeedd;
+      font-weight: 700;
+    }
+    .hero p {
+      color: #e2d9cf;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+    .tagline {
+      background: rgba(255,245,225,0.15);
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      margin-top: 12px;
+      backdrop-filter: blur(2px);
+    }
+
+    /* category tabs (horizontal scroll) */
+    .categories {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 0.7rem;
+      padding: 1rem 1.2rem;
+      background: #ffffffcc;
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #f0e3d4;
+      scrollbar-width: thin;
+      background: #fffcf8;
+    }
+    .category-btn {
+      background: #f2ebe2;
+      border: none;
+      padding: 0.6rem 1.3rem;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #3b2e24;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      font-family: inherit;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.02);
+    }
+    .category-btn.active {
+      background: #c9773e;
+      color: white;
+      box-shadow: 0 4px 10px rgba(201,119,62,0.3);
+    }
+    .category-btn:active { transform: scale(0.96); }
+
+    /* menu grid layout */
+    .menu-container {
+      padding: 1.5rem 1.2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.6rem;
+    }
+    /* product card */
+    .menu-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 12px 24px -12px rgba(0,0,0,0.12);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(0px);
+      border: 1px solid #f5e9de;
+    }
+    .menu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 28px -12px rgba(0,0,0,0.2);
+    }
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: #f7ede3;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .menu-card:hover .card-img {
+      transform: scale(1.02);
+    }
+    .card-content {
+      padding: 1rem 1.2rem 1.3rem;
+      flex: 1;
+    }
+    .product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .product-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: #2e241f;
+    }
+    .price {
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #c9773e;
+      background: #fef3e8;
+      padding: 0.2rem 0.65rem;
+      border-radius: 40px;
+    }
+    .description {
+      font-size: 0.85rem;
+      color: #5f5348;
+      line-height: 1.4;
+      margin-top: 0.5rem;
+    }
+    .badge-category {
+      display: inline-block;
+      font-size: 0.7rem;
+      background: #f0e9e2;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      margin-top: 0.6rem;
+      color: #9b6a42;
+      font-weight: 500;
+    }
+    /* empty state */
+    .empty-message {
+      text-align: center;
+      padding: 3rem;
+      font-size: 1.2rem;
+      color: #b7a287;
+      background: #fff9f2;
+      border-radius: 48px;
+      margin-top: 2rem;
+    }
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: #bba88d;
+      border-top: 1px solid #f0e2d4;
+      padding: 1.5rem;
+    }
+    /* responsiveness */
+    @media (max-width: 560px) {
+      .hero h1 { font-size: 1.9rem; }
+      .categories { padding: 0.8rem 1rem; gap: 0.5rem; }
+      .category-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
+      .menu-container { padding: 1rem; }
+      .menu-grid { gap: 1rem; }
+      .card-content { padding: 0.9rem; }
+      .product-name { font-size: 1.1rem; }
+      .price { font-size: 1rem; }
+    }
+    /* simple animation */
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .menu-card {
+      animation: fadeSlide 0.3s ease forwards;
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>URBAN BITES</h1>
+  <p>craft · comfort · crave</p>
+  <div class="tagline">✨ modern kitchen + local soul ✨</div>
+</div>
+
+<!-- category tabs will be injected by js but keep semantic wrapper -->
+<div class="categories" id="categoryTabs"></div>
+
+<div class="menu-container">
+  <div id="menuGrid" class="menu-grid"></div>
+</div>
+<footer>
+  © Urban Bites — Fresh ingredients, bold flavors. Prices inclusive tax.
+</footer>
+
+<script>
+  // ---------- MENU DATABASE ----------
+  // each item: category, name, price (formatted string), description, image (unsplash / placeholder high-quality but locally relevant)
+  const menuItems = [
+    // BURGERS category
+    {
+      id: 1,
+      category: "Burgers",
+      name: "Classic Smash Burger",
+      price: "$9.90",
+      description: "Double beef patty, American cheese, caramelized onions, house sauce, brioche bun.",
+      image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&h=400&fit=crop"
+    },
+    {
+      id: 2,
+      category: "Burgers",
+      name: "Spicy Jalapeño Crunch",
+      price: "$11.50",
+      description: "Angus beef, pepper jack, fried jalapeños, chipotle aioli, lettuce, toasted bun.",
+      image: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=500&h=400&fit=crop"
+    },
+    {
+      id: 3,
+      category: "Burgers",
+      name: "Mushroom Truffle Melt",
+      price: "$12.90",
+      description: "Plant-based patty, sautéed cremini mushrooms, truffle aioli, swiss cheese, arugula.",
+      image: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=500&h=400&fit=crop"
+    },
+    // PIZZA category
+    {
+      id: 4,
+      category: "Pizza",
+      name: "Margherita Classica",
+      price: "$13.25",
+      description: "San Marzano tomatoes, fresh mozzarella, basil, extra virgin olive oil, thin crust.",
+      image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&h=400&fit=crop"
+    },
+    {
+      id: 5,
+      category: "Pizza",
+      name: "Pepperoni Diavolo",
+      price: "$15.90",
+      description: "Spicy pepperoni, mozzarella, tomato sauce, chili flakes, oregano.",
+      image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&h=400&fit=crop"
+    },
+    {
+      id: 6,
+      category: "Pizza",
+      name: "Funghi & Salsiccia",
+      price: "$16.50",
+      description: "Fennel sausage, wild mushrooms, fior di latte, rosemary, garlic oil.",
+      image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&h=400&fit=crop"
+    },
+    // SALADS & BOWLS
+    {
+      id: 7,
+      category: "Salads",
+      name: "Mediterranean Quinoa",
+      price: "$10.25",
+      description: "Quinoa, cucumber, heirloom tomatoes, feta, kalamata olives, lemon-herb vinaigrette.",
+      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&h=400&fit=crop"
+    },
+    {
+      id: 8,
+      category: "Salads",
+      name: "Tofu Power Bowl",
+      price: "$11.90",
+      description: "Crispy tofu, avocado, roasted sweet potato, kale, tahini-maple dressing.",
+      image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=400&fit=crop"
+    },
+    {
+      id: 9,
+      category: "Salads",
+      name: "Chicken Caesar",
+      price: "$12.50",
+      description: "Grilled chicken, romaine, parmesan, sourdough croutons, classic caesar dressing.",
+      image: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=500&h=400&fit=crop"
+    },
+    // DESSERTS
+    {
+      id: 10,
+      category: "Desserts",
+      name: "Salted Caramel Cheesecake",
+      price: "$7.25",
+      description: "New york style, caramel drizzle, flaky sea salt, vanilla bean crust.",
+      image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&h=400&fit=crop"
+    },
+    {
+      id: 11,
+      category: "Desserts",
+      name: "Warm Cookie Skillet",
+      price: "$6.90",
+      description: "Chocolate chunk, vanilla ice cream, toffee bits, served warm.",
+      image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500&h=400&fit=crop"
+    },
+    // DRINKS
+    {
+      id: 12,
+      category: "Drinks",
+      name: "House Cold Brew",
+      price: "$4.50",
+      description: "Slow steeped 16hrs, oat milk optional, hint of vanilla.",
+      image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&h=400&fit=crop"
+    },
+    {
+      id: 13,
+      category: "Drinks",
+      name: "Spicy Mango Lemonade",
+      price: "$5.25",
+      description: "Fresh lemon, mango puree, tajin rim, refreshing kick.",
+      image: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=500&h=400&fit=crop"
+    },
+    {
+      id: 14,
+      category: "Drinks",
+      name: "Matcha Latte",
+      price: "$5.50",
+      description: "Ceremonial matcha, steamed oat milk, light honey optional.",
+      image: "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=500&h=400&fit=crop"
+    },
+    // extra burger for variety
+    {
+      id: 15,
+      category: "Burgers",
+      name: "BBQ Bacon Burger",
+      price: "$13.25",
+      description: "Aged cheddar, applewood bacon, crispy onion strings, bourbon BBQ sauce.",
+      image: "https://images.unsplash.com/photo-1553979459-d2229ba7433a?w=500&h=400&fit=crop"
+    },
+    // one more pizza
+    {
+      id: 16,
+      category: "Pizza",
+      name: "Veggie Fiorentina",
+      price: "$14.75",
+      description: "Spinach, artichoke, ricotta, cherry tomatoes, mozzarella, garlic base.",
+      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&h=400&fit=crop"
+    }
+  ];
+
+  // unique categories (sorted)
+  const categoriesSet = new Set();
+  menuItems.forEach(item => categoriesSet.add(item.category));
+  const categories = Array.from(categoriesSet).sort();
+
+  // DOM elements
+  const categoryTabsDiv = document.getElementById('categoryTabs');
+  const menuGridDiv = document.getElementById('menuGrid');
+
+  let activeCategory = "Burgers";   // default category
+
+  // helper: render category buttons
+  function renderCategories() {
+    categoryTabsDiv.innerHTML = '';
+    categories.forEach(cat => {
+      const btn = document.createElement('button');
+      btn.textContent = cat;
+      btn.classList.add('category-btn');
+      if (cat === activeCategory) btn.classList.add('active');
+      btn.addEventListener('click', () => {
+        activeCategory = cat;
+        renderCategories();     // re-render tabs to update active style
+        renderMenuItems();      // show filtered items
+        // smooth scroll to top of menu (optional)
+        document.querySelector('.menu-container')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      categoryTabsDiv.appendChild(btn);
+    });
+  }
+
+  // render product cards
+  function renderMenuItems() {
+    const filtered = menuItems.filter(item => item.category === activeCategory);
+    if (filtered.length === 0) {
+      menuGridDiv.innerHTML = `<div class="empty-message">✨ coming soon · new flavors ✨<br>check back for more dishes</div>`;
+      return;
+    }
+
+    // build grid with cards
+    menuGridDiv.innerHTML = '';
+    filtered.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'menu-card';
+      
+      // image (with fallback text if broken, but unsplash images reliable)
+      const img = document.createElement('img');
+      img.src = item.image;
+      img.alt = item.name;
+      img.className = 'card-img';
+      img.loading = 'lazy';
+      // optional: onerror fallback gentle color
+      img.onerror = () => { img.src = 'https://placehold.co/500x400/f7ede3/c9773e?text=Yummy+food'; };
+      
+      const contentDiv = document.createElement('div');
+      contentDiv.className = 'card-content';
+      
+      const headerDiv = document.createElement('div');
+      headerDiv.className = 'product-header';
+      const nameSpan = document.createElement('span');
+      nameSpan.className = 'product-name';
+      nameSpan.textContent = item.name;
+      const priceSpan = document.createElement('span');
+      priceSpan.className = 'price';
+      priceSpan.textContent = item.price;
+      headerDiv.appendChild(nameSpan);
+      headerDiv.appendChild(priceSpan);
+      
+      const descPara = document.createElement('p');
+      descPara.className = 'description';
+      descPara.textContent = item.description;
+      
+      const badgeSpan = document.createElement('span');
+      badgeSpan.className = 'badge-category';
+      badgeSpan.textContent = item.category;
+      
+      contentDiv.appendChild(headerDiv);
+      contentDiv.appendChild(descPara);
+      contentDiv.appendChild(badgeSpan);
+      
+      card.appendChild(img);
+      card.appendChild(contentDiv);
+      menuGridDiv.appendChild(card);
+    });
+  }
+
+  // initial load & mobile first touch
+  function init() {
+    renderCategories();
+    renderMenuItems();
+  }
+
+  init();
+
+  // add small effect for sticky category scroll to give subtle hint (optional)
+  // add a tiny resize listener to keep cards consistent – no extra needed
+  // Also set touch-friendly active states & add a smooth container animation
+  // on window load, ensure active category button fully visible if needed
+  window.addEventListener('load', () => {
+    // check if active tab not fully visible in scrollable row? let's auto-scroll to active
+    const activeBtn = document.querySelector('.category-btn.active');
+    if (activeBtn) {
+      activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+    // add impression of modern fluid layout
+    document.body.style.animation = 'fadeSlide 0.2s ease';
+  });
+</script>
+</body>
+</html>
