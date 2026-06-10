@@ -149,185 +149,96 @@
       border-color: #ffffff;
     }
 
-    /* carousel styles */
-    .carousel-section {
-      margin: 2rem 0 3rem;
-    }
-
-    .carousel-container {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .carousel-wrapper {
-      overflow: hidden;
-      width: 100%;
-      border-radius: 32px;
-    }
-
-    .carousel-slides {
-      display: flex;
-      transition: transform 0.4s ease-in-out;
-    }
-
-    .carousel-slide {
-      min-width: 100%;
-      flex-shrink: 0;
-      padding: 0.5rem;
+    /* detached card sections */
+    .menu-section {
+      margin: 2.5rem 0;
     }
 
     .menu-card {
-      background: rgba(20, 40, 22, 0.75);
-      backdrop-filter: blur(12px);
-      border-radius: 32px;
-      padding: 1.8rem;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.5);
-      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(0px);
+      border-radius: 28px;
+      padding: 0;
+      overflow: hidden;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+      border: none;
     }
 
     .menu-card:hover {
-      transform: translateY(-6px);
-      border-color: #ffffff;
-      background: rgba(35, 65, 38, 0.85);
-      box-shadow: 0 30px 40px -12px rgba(0,0,0,0.7);
+      transform: translateY(-5px);
+      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.5);
+    }
+
+    /* green header */
+    .card-header {
+      background: linear-gradient(135deg, #1a5c1a, #0d3b0d);
+      padding: 1.2rem 1.8rem;
+      border-bottom: 3px solid #e6bc5e;
     }
 
     .card-title {
       font-size: 1.9rem;
       font-weight: 800;
+      color: #ffffff;
+      margin: 0;
       display: flex;
       align-items: center;
       gap: 12px;
-      border-left: 5px solid #ffffff;
-      padding-left: 16px;
-      margin-bottom: 1rem;
-      color: #ffffff;
+    }
+
+    .card-content {
+      padding: 1.5rem 1.8rem;
+      background: white;
     }
 
     .card-sub {
       font-size: 0.85rem;
-      color: #dddddd;
+      color: #666;
       margin-bottom: 1rem;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
+      font-weight: 500;
     }
 
     .menu-item {
       display: flex;
       justify-content: space-between;
       padding: 0.7rem 0;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid #e5e5e5;
       font-weight: 500;
     }
 
     .item-name {
       font-size: 1rem;
-      color: #f5f5f5;
+      color: #1e2a1e;
+      font-weight: 600;
     }
 
     .item-price {
-      color: #ffffff;
-      font-weight: 700;
+      color: #1a5c1a;
+      font-weight: 800;
+      font-size: 1rem;
     }
 
     .badge-combo {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: #f0f7f0;
+      border: 1px solid #1a5c1a;
       border-radius: 40px;
       padding: 0.55rem;
       text-align: center;
       margin-top: 1rem;
       font-size: 0.8rem;
-      font-weight: 600;
-      color: #ffffff;
+      font-weight: 700;
+      color: #1a5c1a;
     }
 
     .shisha-smoke {
       position: relative;
-      overflow: hidden;
-    }
-
-    /* carousel navigation */
-    .carousel-btn {
-      background: rgba(0,0,0,0.6);
-      border: 1px solid rgba(255,255,255,0.3);
-      color: white;
-      font-size: 1.8rem;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10;
-      transition: 0.2s;
-    }
-
-    .carousel-btn:hover {
-      background: rgba(255,255,255,0.3);
-    }
-
-    .btn-prev {
-      left: -15px;
-    }
-
-    .btn-next {
-      right: -15px;
-    }
-
-    .dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.6rem;
-      margin-top: 1.5rem;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      background: rgba(255,255,255,0.4);
-      border-radius: 50%;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .dot.active {
-      background: #ffffff;
-      width: 24px;
-      border-radius: 10px;
     }
 
     /* full-width sections */
     .full-width-section {
-      margin: 3rem 0;
-    }
-
-    .section-title {
-      font-size: 2.3rem;
-      font-weight: 800;
-      text-align: center;
-      margin: 2rem 0 1.8rem;
-    }
-
-    .section-title span {
-      background: linear-gradient(135deg, #ffffff, #e0e0e0);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      border-bottom: 3px solid #ffffff;
-      padding-bottom: 8px;
-    }
-
-    .single-card-wrapper {
-      display: flex;
-      justify-content: center;
+      margin: 2rem 0;
     }
 
     /* footer */
@@ -423,15 +334,26 @@
       visibility: visible;
     }
 
+    /* animations */
+    .fade-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     @media (max-width: 680px) {
       .hero-content h1 { font-size: 2.7rem; }
       .hero-content h2 { font-size: 1.2rem; }
       .navbar { gap: 1rem; padding: 0.7rem 1rem; }
-      .carousel-btn { width: 36px; height: 36px; font-size: 1.2rem; }
-      .btn-prev { left: -5px; }
-      .btn-next { right: -5px; }
-      .menu-card { padding: 1.3rem; }
-      .section-title { font-size: 1.9rem; }
+      .menu-card { margin: 0 0.5rem; }
+      .card-title { font-size: 1.5rem; }
+      .card-content { padding: 1.2rem; }
+      .card-header { padding: 1rem 1.2rem; }
     }
   </style>
 </head>
@@ -443,9 +365,11 @@
 <!-- Sticky Navigation -->
 <div class="navbar">
   <a class="nav-link" data-section="home">🏠 HOME</a>
-  <a class="nav-link" data-section="menu-carousel">🍽️ MENU</a>
-  <a class="nav-link" data-section="beverages-section">🍻 BEVERAGES</a>
-  <a class="nav-link" data-section="shisha-section">💨 SHISHA</a>
+  <a class="nav-link" data-section="starters">🍢 STARTERS</a>
+  <a class="nav-link" data-section="sandwiches">🥙 SANDWICHES</a>
+  <a class="nav-link" data-section="salads">🥗 SALADS</a>
+  <a class="nav-link" data-section="beverages">🍻 BEVERAGES</a>
+  <a class="nav-link" data-section="shisha">💨 SHISHA</a>
   <a class="nav-link" data-section="contact-footer">📞 CONTACT</a>
 </div>
 
@@ -460,64 +384,68 @@
     </div>
   </section>
 
-  <div class="container" id="menu-carousel">
-    <!-- CAROUSEL: Appetizers, Sandwiches, Salads only -->
-    <div class="carousel-section">
-      <div class="carousel-container">
-        <div class="carousel-btn btn-prev" id="prevBtn">‹</div>
-        <div class="carousel-wrapper">
-          <div class="carousel-slides" id="carouselSlides">
-            <!-- Appetizers Slide -->
-            <div class="carousel-slide">
-              <div class="menu-card">
-                <div class="card-title">🔥 Appetizers</div>
-                <div class="card-sub">12 pcs • golden & crispy</div>
-                <div class="menu-item"><span class="item-name">Rkakat</span><span class="item-price">$6</span></div>
-                <div class="menu-item"><span class="item-name">Sambousik Jebne</span><span class="item-price">$6</span></div>
-                <div class="menu-item"><span class="item-name">Sambousik Lahme</span><span class="item-price">$6</span></div>
-                <div class="menu-item"><span class="item-name">Kebbeh</span><span class="item-price">$8</span></div>
-                <div class="menu-item"><span class="item-name">Mn Kel Shi (8 pcs)</span><span class="item-price">$10</span></div>
-              </div>
-            </div>
-            <!-- Sandwiches Slide -->
-            <div class="carousel-slide">
-              <div class="menu-card">
-                <div class="card-title">🥙 Sandwiches</div>
-                <div class="menu-item"><span class="item-name">Tawouk</span><span class="item-price">$6</span></div>
-                <div class="menu-item"><span class="item-name">Fajitas</span><span class="item-price">$7</span></div>
-                <div class="menu-item"><span class="item-name">Crispy Chicken</span><span class="item-price">$7</span></div>
-                <div class="menu-item"><span class="item-name">Hamburger</span><span class="item-price">$8</span></div>
-                <div class="menu-item"><span class="item-name">Chicken Burger</span><span class="item-price">$8</span></div>
-                <div class="menu-item"><span class="item-name">Rosto</span><span class="item-price">$8</span></div>
-                <div class="menu-item"><span class="item-name">Make It Platter</span><span class="item-price">$10</span></div>
-                <div class="badge-combo">🧀 Add cheese + $1 &nbsp;|&nbsp; 🍟 Add combo + $3</div>
-              </div>
-            </div>
-            <!-- Salads Slide -->
-            <div class="carousel-slide">
-              <div class="menu-card">
-                <div class="card-title">🥗 Salads</div>
-                <div class="card-sub">4 persons / 2 persons</div>
-                <div class="menu-item"><span class="item-name">Fatouch</span><span class="item-price">$9 / $5</span></div>
-                <div class="menu-item"><span class="item-name">Crab Salad</span><span class="item-price">$12 / $6</span></div>
-                <div class="menu-item"><span class="item-name">Chicken Caesar Salad</span><span class="item-price">$12 / $6</span></div>
-              </div>
-            </div>
-          </div>
+  <div class="container">
+    
+    <!-- STARTERS SECTION (with Box Fries $3) -->
+    <div id="starters" class="menu-section fade-scroll">
+      <div class="menu-card">
+        <div class="card-header">
+          <div class="card-title">🍢 STARTERS</div>
         </div>
-        <div class="carousel-btn btn-next" id="nextBtn">›</div>
+        <div class="card-content">
+          <div class="card-sub">12 pcs • golden & crispy</div>
+          <div class="menu-item"><span class="item-name">Rkakat</span><span class="item-price">$6</span></div>
+          <div class="menu-item"><span class="item-name">Sambousik Jebne</span><span class="item-price">$6</span></div>
+          <div class="menu-item"><span class="item-name">Sambousik Lahme</span><span class="item-price">$6</span></div>
+          <div class="menu-item"><span class="item-name">Kebbeh</span><span class="item-price">$8</span></div>
+          <div class="menu-item"><span class="item-name">Mn Kel Shi (8 pcs)</span><span class="item-price">$10</span></div>
+          <div class="menu-item"><span class="item-name">Box Fries</span><span class="item-price">$3</span></div>
+        </div>
       </div>
-      <div class="dots" id="dotsContainer"></div>
     </div>
-  </div>
 
-  <!-- BEVERAGES SECTION (full width, separate) -->
-  <div id="beverages-section" class="full-width-section">
-    <div class="container">
-      <div class="section-title"><span>BEVERAGES</span></div>
-      <div class="single-card-wrapper">
-        <div class="menu-card">
-          <div class="card-title">🍻 Beverages</div>
+    <!-- SANDWICHES SECTION (with Fries $4) -->
+    <div id="sandwiches" class="menu-section fade-scroll">
+      <div class="menu-card">
+        <div class="card-header">
+          <div class="card-title">🥙 SANDWICHES</div>
+        </div>
+        <div class="card-content">
+          <div class="menu-item"><span class="item-name">Tawouk</span><span class="item-price">$6</span></div>
+          <div class="menu-item"><span class="item-name">Fajitas</span><span class="item-price">$7</span></div>
+          <div class="menu-item"><span class="item-name">Crispy Chicken</span><span class="item-price">$7</span></div>
+          <div class="menu-item"><span class="item-name">Hamburger</span><span class="item-price">$8</span></div>
+          <div class="menu-item"><span class="item-name">Chicken Burger</span><span class="item-price">$8</span></div>
+          <div class="menu-item"><span class="item-name">Rosto</span><span class="item-price">$8</span></div>
+          <div class="menu-item"><span class="item-name">Make It Platter</span><span class="item-price">$10</span></div>
+          <div class="menu-item"><span class="item-name">Fries</span><span class="item-price">$4</span></div>
+          <div class="badge-combo">🧀 Add cheese + $1 &nbsp;|&nbsp; 🍟 Add combo + $3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SALADS SECTION -->
+    <div id="salads" class="menu-section fade-scroll">
+      <div class="menu-card">
+        <div class="card-header">
+          <div class="card-title">🥗 SALADS</div>
+        </div>
+        <div class="card-content">
+          <div class="card-sub">4 persons / 2 persons</div>
+          <div class="menu-item"><span class="item-name">Fatouch</span><span class="item-price">$9 / $5</span></div>
+          <div class="menu-item"><span class="item-name">Crab Salad</span><span class="item-price">$12 / $6</span></div>
+          <div class="menu-item"><span class="item-name">Chicken Caesar Salad</span><span class="item-price">$12 / $6</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEVERAGES SECTION -->
+    <div id="beverages" class="menu-section fade-scroll">
+      <div class="menu-card">
+        <div class="card-header">
+          <div class="card-title">🍻 BEVERAGES</div>
+        </div>
+        <div class="card-content">
           <div class="menu-item"><span class="item-name">Water (small)</span><span class="item-price">$1</span></div>
           <div class="menu-item"><span class="item-name">Water (big)</span><span class="item-price">$2</span></div>
           <div class="menu-item"><span class="item-name">Soft Drink</span><span class="item-price">$1.5</span></div>
@@ -527,29 +455,32 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- SHISHA SECTION (full width, separate) -->
-  <div id="shisha-section" class="full-width-section">
-    <div class="container">
-      <div class="section-title"><span>SHISHA</span></div>
-      <div class="single-card-wrapper">
-        <div class="menu-card shisha-smoke">
-          <div class="card-title">🍃 Shisha</div>
+    <!-- SHISHA SECTION -->
+    <div id="shisha" class="menu-section fade-scroll">
+      <div class="menu-card shisha-smoke">
+        <div class="card-header">
+          <div class="card-title">💨 SHISHA</div>
+        </div>
+        <div class="card-content">
           <div class="menu-item"><span class="item-name">🌿 Hamoud w Na3na3</span><span class="item-price">$7</span></div>
-          <div class="menu-item"><span class="item-name">🍎 Tefehten</span><span class="item-price">$7</span></div>
+          <div class="menu-item"><span class="item-name">🍎 2 Apples</span><span class="item-price">$7</span></div>
           <div class="badge-combo" style="margin-top:1rem;"><strong>Ras Tene $2</strong></div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- World Cup Offer Box (standalone) -->
-  <div class="container">
-    <div style="display: flex; justify-content: center; margin: 2rem auto 1rem;">
-      <div class="menu-card" style="max-width: 500px; text-align: center; background: rgba(20,40,22,0.85);">
-        <strong style="font-size: 1.5rem; color: white; display: block; margin-bottom: 8px;">World Cup Offer</strong>
-        <p style="font-weight: 500; color: #f5f5f5;">Shisha + Beer for $9</p>
+    <!-- World Cup Offer Box -->
+    <div class="full-width-section fade-scroll">
+      <div style="display: flex; justify-content: center; margin: 2rem auto 1rem;">
+        <div class="menu-card" style="max-width: 500px; text-align: center; background: rgba(255,255,255,0.95);">
+          <div class="card-header" style="background: linear-gradient(135deg, #1a5c1a, #0d3b0d);">
+            <div class="card-title" style="justify-content: center;">🏆 WORLD CUP OFFER</div>
+          </div>
+          <div class="card-content">
+            <p style="font-size: 1.2rem; font-weight: 700; color: #1a5c1a;">Shisha + Beer for $9</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -566,8 +497,7 @@
 </main>
 
 <!-- floating WhatsApp button with pre-filled order message -->
-<a href="https://wa.me/96170181471?text=Hi Hoyek's,
-I want to order from the World Cup Menu" class="whatsapp-float" target="_blank" id="whatsappBtn">
+<a href="https://wa.me/96170181471?text=Bade%20Otloub%3A%0A%0AOrder%3A%0A---%0A%0ALocation%3A%0A---" class="whatsapp-float" target="_blank">
   <i class="fab fa-whatsapp"></i>
 </a>
 
@@ -575,68 +505,6 @@ I want to order from the World Cup Menu" class="whatsapp-float" target="_blank" 
 
 <script>
   (function() {
-    // Carousel logic (Appetizers, Sandwiches, Salads only)
-    const slidesContainer = document.getElementById('carouselSlides');
-    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const dotsContainer = document.getElementById('dotsContainer');
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-
-    function updateCarousel() {
-      const offset = -currentIndex * 100;
-      slidesContainer.style.transform = `translateX(${offset}%)`;
-      const dots = document.querySelectorAll('.dot');
-      dots.forEach((dot, idx) => {
-        if (idx === currentIndex) dot.classList.add('active');
-        else dot.classList.remove('active');
-      });
-    }
-
-    function createDots() {
-      dotsContainer.innerHTML = '';
-      for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (i === currentIndex) dot.classList.add('active');
-        dot.addEventListener('click', () => {
-          currentIndex = i;
-          updateCarousel();
-        });
-        dotsContainer.appendChild(dot);
-      }
-    }
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % totalSlides;
-      updateCarousel();
-    }
-
-    function prevSlide() {
-      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-      updateCarousel();
-    }
-
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
-    createDots();
-
-    // Touch/swipe support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-    const carouselWrapper = document.querySelector('.carousel-wrapper');
-    if (carouselWrapper) {
-      carouselWrapper.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-      });
-      carouselWrapper.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        if (touchEndX < touchStartX - 50) nextSlide();
-        if (touchEndX > touchStartX + 50) prevSlide();
-      });
-    }
-
     // Navigation: scroll to various sections
     function scrollToSection(sectionId) {
       const target = document.getElementById(sectionId);
@@ -660,7 +528,7 @@ I want to order from the World Cup Menu" class="whatsapp-float" target="_blank" 
     const viewMenuBtn = document.getElementById('viewMenuBtn');
     if (viewMenuBtn) {
       viewMenuBtn.addEventListener('click', () => {
-        scrollToSection('menu-carousel');
+        scrollToSection('starters');
       });
     }
 
@@ -669,11 +537,31 @@ I want to order from the World Cup Menu" class="whatsapp-float" target="_blank" 
     window.addEventListener('scroll', () => {
       if (window.scrollY > 500) scrollBtn.classList.add('show');
       else scrollBtn.classList.remove('show');
+      
+      // fade-scroll trigger
+      const fadeElements = document.querySelectorAll('.fade-scroll');
+      fadeElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        if (rect.top < windowHeight - 70) {
+          el.classList.add('visible');
+        }
+      });
     });
+    
     scrollBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-
+    
+    // initial fade check
+    const fadeEls = document.querySelectorAll('.fade-scroll');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+    fadeEls.forEach(el => observer.observe(el));
+    
     // Subtle smoke animation on Shisha card
     function addSmokeEffect() {
       const shishaCard = document.querySelector('.shisha-smoke');
@@ -685,7 +573,7 @@ I want to order from the World Cup Menu" class="whatsapp-float" target="_blank" 
           smokePuff.style.bottom = '15px';
           smokePuff.style.right = '20px';
           smokePuff.style.fontSize = '28px';
-          smokePuff.style.opacity = '0.2';
+          smokePuff.style.opacity = '0.15';
           smokePuff.style.pointerEvents = 'none';
           smokePuff.style.transition = 'all 1.8s ease';
           shishaCard.style.position = 'relative';
@@ -695,17 +583,6 @@ I want to order from the World Cup Menu" class="whatsapp-float" target="_blank" 
       }
     }
     addSmokeEffect();
-
-    // WhatsApp button already has pre-filled message in href
-    // Ensure it opens correctly on all devices
-    const whatsappBtn = document.getElementById('whatsappBtn');
-      if (whatsappBtn) {
-      // The message is correctly encoded:
-      // "Bade Otloub:\n\nOrder:\n---\n\nLocation:\n---"
-      whatsappBtn.addEventListener('click', (e) => {
-        // No extra action needed, the link already works
-      });
-    }
   })();
 </script>
 </body>
